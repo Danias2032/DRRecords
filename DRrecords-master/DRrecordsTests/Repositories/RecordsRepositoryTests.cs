@@ -39,13 +39,16 @@ namespace DRrecords.Repositories.Tests
         [TestMethod()]
         public void DeleteRecordTest()
         {
-            Assert.IsNull(_recordsRepository.DeleteRecord(7));
+            Assert.IsNull(_recordsRepository.DeleteRecord(3));
             Assert.AreEqual(7, _recordsRepository.DeleteRecord(7)?.Id);
             Assert.AreEqual(3, _recordsRepository.GetAll().Count());
         }
         [TestMethod()]
         public void UpdateRecord()
         {
+            Assert.AreEqual(7, _recordsRepository.UpdateRecord(7).Id);
+            Assert.IsNotNull(7, _recordsRepository.UpdateRecord(4, rGood).Id);
+            Assert.AreEqual()
         }
     }
 }
