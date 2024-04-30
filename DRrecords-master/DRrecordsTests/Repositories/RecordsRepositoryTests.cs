@@ -16,15 +16,23 @@ namespace DRrecords.Repositories.Tests
         [TestMethod()]
         public void GetAllTest()
         {
-            Record record = new Record();
+            IEnumerable<Record> records = _recordsRepository.GetAll();
+            Assert.AreEqual(3, records.Count());
+            Assert.AreEqual("Death Grips", records.First().artist);
         }
         [TestMethod()]
         public void GetByIdTest()
         { 
+            Assert.IsNotNull(_recordsRepository.GetById(4));
+            Assert.IsNull(_recordsRepository.GetById(3));
         }
         [TestMethod()]
         public void AddRecordTest()
         {
+            Record r = new Record() { id = 0, artist = "Hollow Front", title = "Breaking Teeth", releaseYear = 2024, genre = "Metal", lengthInMin = 4 };
+            Assert.AreEqual(7, _recordsRepository.AddRecord(r).id);
+            Assert.AreEqual(4, _recordsRepository.GetAll().Count());
+            Assert.ThrowsException<IndexOutOfRangeException>(() => _recordsRepository.AddRecord(r));
         }
         [TestMethod()]
         public void DeleteRecordTest()
