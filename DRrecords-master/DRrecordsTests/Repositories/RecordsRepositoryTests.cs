@@ -15,6 +15,7 @@ namespace DRrecords.Repositories.Tests
         private static RecordsRepository _recordsRepository = new();
         private readonly Record rGood = new Record() { Id = 0, Artist = "Hollow Front", Title = "Breaking Teeth", ReleaseYear = 2024, Genre = "Metal", LengthInSeconds = 4 };
         private readonly Record rBad = new Record() { Id = 0, Artist = "", Title = "", ReleaseYear = 2000, Genre = "", LengthInSeconds = -1 };
+
         [TestMethod()]
         public void GetAllTest()
         {
@@ -46,9 +47,10 @@ namespace DRrecords.Repositories.Tests
         [TestMethod()]
         public void UpdateRecord()
         {
-            Assert.AreEqual(7, _recordsRepository.UpdateRecord(7).Id);
-            Assert.IsNotNull(7, _recordsRepository.UpdateRecord(4, rGood).Id);
-            Assert.AreEqual()
+            Assert.AreEqual(3, _recordsRepository.GetAll().Count());
+            Assert.IsNull(_recordsRepository.UpdateRecord(0, rGood));
+            Assert.AreEqual(0, _recordsRepository.UpdateRecord(4, rGood)?.Id);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => _recordsRepository.UpdateRecord(0, rBad));
         }
     }
 }
