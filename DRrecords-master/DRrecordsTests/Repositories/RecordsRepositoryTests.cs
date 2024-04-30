@@ -23,7 +23,7 @@ namespace DRrecords.Repositories.Tests
         { 
         }
         [TestMethod()]
-        public void AddRecordTest()2
+        public void AddRecordTest()
         {
         }
         [TestMethod()]
