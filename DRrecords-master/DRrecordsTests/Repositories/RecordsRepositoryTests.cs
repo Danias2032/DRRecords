@@ -12,13 +12,15 @@ namespace DRrecords.Repositories.Tests
     [TestClass()]
     public class RecordsRepositoryTests
     {
-        RecordsRepository _recordsRepository = new();
+        private static RecordsRepository _recordsRepository = new();
+        private readonly Record rGood = new Record() { Id = 0, Artist = "Hollow Front", Title = "Breaking Teeth", ReleaseYear = 2024, Genre = "Metal", LengthInSeconds = 4 };
+        private readonly Record rBad = new Record() { Id = 0, Artist = "", Title = "", ReleaseYear = 2000, Genre = "", LengthInSeconds = -1 };
         [TestMethod()]
         public void GetAllTest()
         {
             IEnumerable<Record> records = _recordsRepository.GetAll();
             Assert.AreEqual(3, records.Count());
-            Assert.AreEqual("Death Grips", records.First().artist);
+            Assert.AreEqual("Death Grips", records.First().Artist);
         }
         [TestMethod()]
         public void GetByIdTest()
@@ -29,18 +31,16 @@ namespace DRrecords.Repositories.Tests
         [TestMethod()]
         public void AddRecordTest()
         {
-            Record r = new Record() { id = 0, artist = "Hollow Front", title = "Breaking Teeth", releaseYear = 2024, genre = "Metal", lengthInMin = 4 };
-            Assert.AreEqual(7, _recordsRepository.AddRecord(r).id);
+            Assert.AreEqual(7, _recordsRepository.AddRecord(rGood)?.Id);
             Assert.AreEqual(4, _recordsRepository.GetAll().Count());
-            Assert.ThrowsException<IndexOutOfRangeException>(() => _recordsRepository.AddRecord(r));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => _recordsRepository.AddRecord(rBad));
 
         }
         [TestMethod()]
         public void DeleteRecordTest()
         {
-            Record r = new Record() { id = 0, artist = "Hollow Front", title = "Breaking Teeth", releaseYear = 2024, genre = "Metal", lengthInMin = 4 };
             Assert.IsNull(_recordsRepository.DeleteRecord(7));
-            Assert.AreEqual(7, _recordsRepository.DeleteRecord(r).id);
+            Assert.AreEqual(7, _recordsRepository.DeleteRecord(7)?.Id);
             Assert.AreEqual(3, _recordsRepository.GetAll().Count());
         }
         [TestMethod()]

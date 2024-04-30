@@ -7,9 +7,9 @@ namespace DRrecords.Repositories
         private static int _nextId = 4;
         private static readonly List<Record> RecordList = new()
         {
-            new Record { id = _nextId++, artist = "Death Grips", title = "The Powers That B", releaseYear = 2015, genre = "industrial hip hop", lengthInMin = 80},
-            new Record { id = _nextId++, artist = "Swans", title = "Soundtracks for the Blind", releaseYear = 1996, genre = "experimental rock", lengthInMin = 141},
-            new Record { id = _nextId++, artist = "Have A Nice Life", title = "Deathconsciousness", releaseYear = 2008, genre = "shoegaze", lengthInMin = 84 }
+            new Record { Id = _nextId++, Artist = "Death Grips", Title = "The Powers That B", ReleaseYear = 2015, Genre = "industrial hip hop", LengthInSeconds = 80},
+            new Record { Id = _nextId++, Artist = "Swans", Title = "Soundtracks for the Blind", ReleaseYear = 1996, Genre = "experimental rock", LengthInSeconds = 141},
+            new Record { Id = _nextId++, Artist = "Have A Nice Life", Title = "Deathconsciousness", ReleaseYear = 2008, Genre = "shoegaze", LengthInSeconds = 84 }
         };
 
         public IEnumerable<Record> GetAll()
@@ -19,12 +19,13 @@ namespace DRrecords.Repositories
 
         public Record? GetById(int id)
         {
-            return RecordList.Find(record => record.id == id);
+            return RecordList.Find(record => record.Id == id);
         }
 
         public Record? AddRecord(Record newRecord)
         {
-            newRecord.id = _nextId++;
+            newRecord.Id = _nextId++;
+            newRecord.Validation();
             RecordList.Add(newRecord);
             return newRecord;
         }
@@ -42,16 +43,17 @@ namespace DRrecords.Repositories
 
         public Record? UpdateRecord(int id, Record record)
         {
+            record.Validation();
             Record? RecordToUpdate = GetById(id);
             if (RecordToUpdate == null)
             {
                 return null;
             }
-            RecordToUpdate.id = record.id;
-            RecordToUpdate.artist = record.artist;
-            RecordToUpdate.title = record.title;
-            RecordToUpdate.genre = record.genre;
-            RecordToUpdate.lengthInMin = record.lengthInMin;
+            RecordToUpdate.Id = record.Id;
+            RecordToUpdate.Artist = record.Artist;
+            RecordToUpdate.Title = record.Title;
+            RecordToUpdate.Genre = record.Genre;
+            RecordToUpdate.LengthInSeconds = record.LengthInSeconds;
             return RecordToUpdate;
         }
     }

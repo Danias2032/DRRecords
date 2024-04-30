@@ -34,7 +34,7 @@ namespace DRrecords.Controllers
             try
             {
                 Record createdRecord = _recordsRepository.AddRecord(record);
-                return Created("/" + createdRecord.id, createdRecord);
+                return Created("/" + createdRecord.Id, createdRecord);
             }
             catch (Exception ex)
             {
