@@ -33,10 +33,15 @@ namespace DRrecords.Repositories.Tests
             Assert.AreEqual(7, _recordsRepository.AddRecord(r).id);
             Assert.AreEqual(4, _recordsRepository.GetAll().Count());
             Assert.ThrowsException<IndexOutOfRangeException>(() => _recordsRepository.AddRecord(r));
+
         }
         [TestMethod()]
         public void DeleteRecordTest()
         {
+            Record r = new Record() { id = 0, artist = "Hollow Front", title = "Breaking Teeth", releaseYear = 2024, genre = "Metal", lengthInMin = 4 };
+            Assert.IsNull(_recordsRepository.DeleteRecord(7));
+            Assert.AreEqual(7, _recordsRepository.DeleteRecord(r).id);
+            Assert.AreEqual(3, _recordsRepository.GetAll().Count());
         }
         [TestMethod()]
         public void UpdateRecord()
