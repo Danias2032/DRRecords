@@ -13,7 +13,7 @@
         {
             if (LengthInSeconds <= -1)
             {
-                throw new ArgumentOutOfRangeException("Length is invalid less than 0");
+                throw new ArgumentOutOfRangeException("Length is invalid; less than 0");
             }
         }
     }
