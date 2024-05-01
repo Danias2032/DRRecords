@@ -19,6 +19,7 @@ namespace DRrecords.Controllers
 
         // GET api/<RecordController>/5
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public Record GetBy(int id)
         {
             return _recordsRepository.GetById(id);
@@ -44,8 +45,9 @@ namespace DRrecords.Controllers
 
         // PUT api/<RecordController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public Record Put(int id, [FromBody] Record record)
         {
+            return _recordsRepository.UpdateRecord(id, record);
         }
 
         // DELETE api/<RecordController>/5
