@@ -7,9 +7,9 @@ namespace DRrecords.Repositories
         private static int _nextId = 4;
         private static readonly List<Record> RecordList = new()
         {
-            new Record { Id = _nextId++, Artist = "Death Grips", Title = "The Powers That B", ReleaseYear = 2015, Genre = "industrial hip hop", LengthInSeconds = 80},
-            new Record { Id = _nextId++, Artist = "Swans", Title = "Soundtracks for the Blind", ReleaseYear = 1996, Genre = "experimental rock", LengthInSeconds = 141},
-            new Record { Id = _nextId++, Artist = "Have A Nice Life", Title = "Deathconsciousness", ReleaseYear = 2008, Genre = "shoegaze", LengthInSeconds = 84 }
+            new Record { Id = _nextId++, Artist = "Death Grips", Title = "The Powers That B", ReleaseYear = 2015, Genre = "Industrial Hip Hop", LengthInSeconds = 80 },
+            new Record { Id = _nextId++, Artist = "Swans", Title = "Soundtracks for the Blind", ReleaseYear = 1996, Genre = "Experimental Rock", LengthInSeconds = 141 },
+            new Record { Id = _nextId++, Artist = "Have A Nice Life", Title = "Deathconsciousness", ReleaseYear = 2008, Genre = "Shoegaze", LengthInSeconds = 84 }
         };
 
         public IEnumerable<Record> GetAll()

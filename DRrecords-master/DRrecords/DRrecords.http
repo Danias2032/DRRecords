@@ -1,6 +1,6 @@
 @DRrecords_HostAddress = http://localhost:5275
 
-GET {{DRrecords_HostAddress}}/weatherforecast/
+GET {{DRrecords_HostAddress}}/records/
 Accept: application/json
 
 ###
